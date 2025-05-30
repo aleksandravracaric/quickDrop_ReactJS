@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { collection, doc, getFirestore } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
 
 const apiKeyFirebase = process.env.REACT_APP_FIREBASE_API_KEY
 
@@ -15,3 +17,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+const firestoreDB = getFirestore(app);
+
+
+export function getFilesFirestoreReference() {
+    return collection(firestoreDB, "files")
+}
+
+export function getFileIdFirestoreReference(fileId) {
+    return doc(firestoreDB, "files", fileId, "file")
+}
+
+const storage = getStorage(app);
+
+export function getFilesStorageReference(fileName) {
+    return ref(storage, `files/${fileName}`);
+}
