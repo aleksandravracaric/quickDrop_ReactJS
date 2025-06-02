@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { uploadBytes } from 'firebase/storage';
 import { getFilesFirestoreReference, getFilesStorageReference } from '../services/Firebase';
-import { Button } from 'react-bootstrap';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'react-bootstrap';
 import { doc } from 'firebase/firestore';
 import { FILE_SIZE_LIMIT_MB, FILES_LIMIT } from '../FileConfig';
 
@@ -10,6 +10,9 @@ export default function HomePage() {
     const [selectedFile, setSelectedFiles] = useState(null);
     const [loading, setLoading] = useState(false);
     const [uploadingStateMessage, setUploadingStateMessage] = useState('')
+    const [filesData, setFilesData] = useState({
+        expirationHours: 1
+    })
 
     const fileInputRef = useRef(null);
 
@@ -58,26 +61,17 @@ export default function HomePage() {
             }
         });
 
-        const uploadedFiles = await Promise.all(uploadPromises);
-
-        const successfulFiles = [];
-
-        uploadedFiles.forEach(file => {
-            if (file !== null) {
-                console.log("Uploaded file:", file.fileName);
-                successfulFiles.push(file);
-            } else {
-                console.log("Upload error");
-            }
-        });
-
-        if (selectedFile) {
-            selectedFile(successfulFiles);
-        }
+        await Promise.all(uploadPromises);
 
         setLoading(false);
         setUploadingStateMessage('Uploaded');
     };
+
+
+    const handleSelectHours = (value) => {
+        console.log(`value: ${value}`)
+        setFilesData(prev => ({ ...prev, expirationHours: value }))
+    }
 
     return (
         <div className='container-fluid backgroundColorHomePage'>
@@ -101,6 +95,22 @@ export default function HomePage() {
                             style={{ display: 'none' }}
                             onChange={handleFileChange}
                         />
+                        <Dropdown className='mt-3' onSelect={(e) => handleSelectHours(e)}>
+                            <DropdownToggle className='dropdownHours' variant="primary" id="dropdownHoursButton">
+                                Duration: {filesData.expirationHours}h
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem eventKey='1'>
+                                    1h
+                                </DropdownItem>
+                                <DropdownItem eventKey='6'>
+                                    6h
+                                </DropdownItem>
+                                <DropdownItem eventKey='24'>
+                                    24h
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </div>
                 </div>
             </div>
