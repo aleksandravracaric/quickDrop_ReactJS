@@ -2,19 +2,22 @@ import { useState, useRef } from 'react';
 import { uploadBytes } from 'firebase/storage';
 import { getFilesFirestoreReference, getFilesStorageReference } from '../services/Firebase';
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'react-bootstrap';
-import { doc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore';
 import { FILE_SIZE_LIMIT_MB, FILES_LIMIT } from '../FileConfig';
 
 
 export default function HomePage() {
-    const [selectedFile, setSelectedFiles] = useState(null);
     const [loading, setLoading] = useState(false);
     const [uploadingStateMessage, setUploadingStateMessage] = useState('')
-    const [filesData, setFilesData] = useState({
-        expirationHours: 1
-    })
+
+    const initialDuration = 1
+    const [duration, setDuration] = useState(initialDuration)
 
     const fileInputRef = useRef(null);
+
+    const clearDuration = () => {
+        setDuration(initialDuration)
+    }
 
     const handleAddFilesClick = () => {
         fileInputRef.current.click();
@@ -47,12 +50,14 @@ export default function HomePage() {
         const newFileRef = doc(getFilesFirestoreReference());
         const sessionId = newFileRef.id;
 
+        const fileNames = []
         const uploadPromises = filesToUpload.map(async (file) => {
             try {
-                const filesStorageRef = getFilesStorageReference(sessionId, file.name);;
+                const filesStorageRef = getFilesStorageReference(sessionId, file.name);
 
                 await uploadBytes(filesStorageRef, file);
                 console.log(`Uploaded: ${file.name}`);
+                fileNames.push(file.name)
                 return { file, fileName: file.name, filePath: file.filePath, sessionId };
             } catch (error) {
                 console.log(error);
@@ -63,14 +68,30 @@ export default function HomePage() {
 
         await Promise.all(uploadPromises);
 
+        const data = {
+            uid: sessionId,
+            duration: duration,
+            createdAt: serverTimestamp(),
+            fileNames: fileNames
+        }
+
+        try {
+            await setDoc(newFileRef, data)
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+            alert('Error uploading file')
+            return
+        }
+
         setLoading(false);
         setUploadingStateMessage('Uploaded');
+        clearDuration()
     };
 
 
     const handleSelectHours = (value) => {
-        console.log(`value: ${value}`)
-        setFilesData(prev => ({ ...prev, expirationHours: value }))
+        setDuration(value)
     }
 
     return (
@@ -97,7 +118,7 @@ export default function HomePage() {
                         />
                         <Dropdown className='mt-3' onSelect={(e) => handleSelectHours(e)}>
                             <DropdownToggle className='dropdownHours' variant="primary" id="dropdownHoursButton">
-                                Duration: {filesData.expirationHours}h
+                                Duration: {duration}h
                             </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem eventKey='1'>
