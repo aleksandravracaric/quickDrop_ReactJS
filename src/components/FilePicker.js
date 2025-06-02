@@ -21,16 +21,6 @@ export default function FilePicker({ onFileSelect, uploadState }) {
             alert('Error uploading file')
             return
         }
-
-        // if (files) {
-        //     if (file.size > sizeFiveMB) {
-        //         alert('fileSizeLimit');
-        //         event.target.value = '';
-        //     } else {
-        //         onFileSelect(file)
-        //         setFileName(file.name);
-        //     }
-        // }
     }
 
     return (

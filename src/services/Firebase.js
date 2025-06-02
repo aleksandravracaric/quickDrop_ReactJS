@@ -22,7 +22,6 @@ const analytics = getAnalytics(app);
 
 const firestoreDB = getFirestore(app);
 
-
 export function getFilesFirestoreReference() {
     return collection(firestoreDB, "files")
 }
