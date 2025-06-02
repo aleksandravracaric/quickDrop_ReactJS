@@ -76,24 +76,27 @@ export default function FilePicker({ onFileSelect, uploadStateSetter }) {
 
     return (
         <div className='container-fluid backgroundColorHomePage'>
-            <div className='row d-flex justify-content-center'>
-                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 align-items-start'>
-                    <h3>Quick Drop</h3>
+            <div className='row'>
+                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
+                    <h3 className="pt-1 ps-1">Quick Drop</h3>
                 </div>
             </div>
-            <div className='row d-flex justify-content-center align-items-center'>
-                <div className='col-12 align-items-center text-center '>
-                    <Button className="addFilesButton" onClick={handleAddFilesClick} disabled={loading}>
-                        <p className='plusText'><i class="bi bi-file-earmark-plus"></i></p>
-                        {loading ? 'Uploading...' : uploadingStateMessage}
-                    </Button>
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        multiple
-                        style={{ display: 'none' }}
-                        onChange={handleFileChange}
-                    />
+
+            <div className='row d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>
+                <div className='col-xl-4 col-lg-4 col-md-6 col-sm-11 align-items-center text-center '>
+                    <div className='text-center'>
+                        <Button className="addFilesButton" onClick={handleAddFilesClick} disabled={loading}>
+                            <p className='plusText'><i class="bi bi-file-earmark-plus"></i></p>
+                            {loading ? 'Uploading...' : uploadingStateMessage}
+                        </Button>
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            multiple
+                            style={{ display: 'none' }}
+                            onChange={handleFileChange}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

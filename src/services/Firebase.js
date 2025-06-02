@@ -31,8 +31,6 @@ export function getFileIdFirestoreReference(fileId) {
     return doc(firestoreDB, "files", fileId, "file")
 }
 
-
-
 const storage = getStorage(app);
 
 export function getFilesStorageReference(fileName, sessionId) {
