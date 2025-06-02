@@ -3,15 +3,15 @@ import { uploadBytes } from 'firebase/storage';
 import { getFilesFirestoreReference, getFilesStorageReference } from '../services/Firebase';
 import { Button } from 'react-bootstrap';
 import { doc } from 'firebase/firestore';
+import { FILE_SIZE_LIMIT_MB, FILES_LIMIT } from '../FileConfig';
 
 
-export default function FilePicker({ onFileSelect, uploadStateSetter }) {
-    const [fileName, setFileName] = useState(null);
+export default function HomePage() {
+    const [selectedFile, setSelectedFiles] = useState(null);
     const [loading, setLoading] = useState(false);
     const [uploadingStateMessage, setUploadingStateMessage] = useState('')
 
     const fileInputRef = useRef(null);
-    const sizeFiveMB = 5242880;
 
     const handleAddFilesClick = () => {
         fileInputRef.current.click();
@@ -22,11 +22,16 @@ export default function FilePicker({ onFileSelect, uploadStateSetter }) {
 
         let isFileLarge = false
         filesToUpload.forEach(file => {
-            if (file.size > sizeFiveMB) {
+            if (file.size > FILE_SIZE_LIMIT_MB) {
                 isFileLarge = true
                 return
             }
         });
+
+        if (filesToUpload.length > FILES_LIMIT) {
+            alert('Only 5 files allowed!')
+            return
+        }
 
         if (isFileLarge) {
             alert('Error uploading file')
@@ -41,7 +46,7 @@ export default function FilePicker({ onFileSelect, uploadStateSetter }) {
 
         const uploadPromises = filesToUpload.map(async (file) => {
             try {
-                const filesStorageRef = getFilesStorageReference(file.name, sessionId);;
+                const filesStorageRef = getFilesStorageReference(sessionId, file.name);;
 
                 await uploadBytes(filesStorageRef, file);
                 console.log(`Uploaded: ${file.name}`);
@@ -66,8 +71,8 @@ export default function FilePicker({ onFileSelect, uploadStateSetter }) {
             }
         });
 
-        if (onFileSelect) {
-            onFileSelect(successfulFiles);
+        if (selectedFile) {
+            selectedFile(successfulFiles);
         }
 
         setLoading(false);

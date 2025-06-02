@@ -32,6 +32,6 @@ export function getFileIdFirestoreReference(fileId) {
 
 const storage = getStorage(app);
 
-export function getFilesStorageReference(fileName, sessionId) {
-    return ref(storage, `uploads/${sessionId}/${fileName}`);
+export function getFilesStorageReference(folderName, fileName) {
+    return ref(storage, `${folderName}/${fileName}`);
 }
