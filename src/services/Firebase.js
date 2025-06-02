@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { collection, doc, getFirestore } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
+import { dblClick } from "@testing-library/user-event/dist/click";
+
 
 const apiKeyFirebase = process.env.REACT_APP_FIREBASE_API_KEY
 
@@ -28,6 +30,8 @@ export function getFilesFirestoreReference() {
 export function getFileIdFirestoreReference(fileId) {
     return doc(firestoreDB, "files", fileId, "file")
 }
+
+
 
 const storage = getStorage(app);
 

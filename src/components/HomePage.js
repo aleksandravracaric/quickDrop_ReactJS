@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { uploadBytes } from 'firebase/storage';
-import { getFilesStorageReference } from '../services/Firebase';
+import { getFilesFirestoreReference, getFilesStorageReference } from '../services/Firebase';
 import { Button } from 'react-bootstrap';
-import { v4 as uuidv4 } from "uuid";
+import { doc } from 'firebase/firestore';
 
 
 export default function FilePicker({ onFileSelect, uploadStateSetter }) {
@@ -36,7 +36,8 @@ export default function FilePicker({ onFileSelect, uploadStateSetter }) {
         setUploadingStateMessage('Uploading...');
         setLoading(true);
 
-        const sessionId = uuidv4();
+        const newFileRef = doc(getFilesFirestoreReference());
+        const sessionId = newFileRef.id;
 
         const uploadPromises = filesToUpload.map(async (file) => {
             try {
