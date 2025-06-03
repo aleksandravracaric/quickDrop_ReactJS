@@ -4,6 +4,7 @@ import { getFilesFirestoreReference, getFilesStorageReference } from '../service
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'react-bootstrap';
 import { doc, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore';
 import { FILE_SIZE_LIMIT_MB, FILES_LIMIT } from '../FileConfig';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function HomePage() {
@@ -14,6 +15,7 @@ export default function HomePage() {
     const [duration, setDuration] = useState(initialDuration)
 
     const fileInputRef = useRef(null);
+    const navigate = useNavigate()
 
     const clearDuration = () => {
         setDuration(initialDuration)
@@ -54,6 +56,8 @@ export default function HomePage() {
         const uploadPromises = filesToUpload.map(async (file) => {
             try {
                 const filesStorageRef = getFilesStorageReference(sessionId, file.name);
+                console.log("SessionId:", sessionId);
+
 
                 await uploadBytes(filesStorageRef, file);
                 console.log(`Uploaded: ${file.name}`);
@@ -87,6 +91,7 @@ export default function HomePage() {
         setLoading(false);
         setUploadingStateMessage('Uploaded');
         clearDuration()
+        navigate(`/${sessionId}`)
     };
 
 

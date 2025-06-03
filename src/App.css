@@ -54,11 +54,44 @@
   color: #1f469a !important;
 }
 
-
 .plusText {
   font-size: 60px;
   font-weight: 800;
 }
+
+.backgroundColorDownloadPage {
+  background-color: #f0f1f1;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downloadLink {
+  padding: 2rem;
+  text-align: center;
+}
+
+.qrCode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 2rem auto;
+  width: 160px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.backgroundColorDownloadPageList {
+  background-color: #f0f1f1;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
 
 @keyframes App-logo-spin {
   from {
