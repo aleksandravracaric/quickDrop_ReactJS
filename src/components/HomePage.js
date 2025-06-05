@@ -58,7 +58,6 @@ export default function HomePage() {
                 const filesStorageRef = getFilesStorageReference(sessionId, file.name);
                 console.log("SessionId:", sessionId);
 
-
                 await uploadBytes(filesStorageRef, file);
                 console.log(`Uploaded: ${file.name}`);
                 fileNames.push(file.name)
