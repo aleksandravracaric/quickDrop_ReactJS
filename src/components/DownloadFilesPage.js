@@ -3,30 +3,33 @@ import { useEffect, useState } from 'react'
 import { getFilesFirestoreReference, getFilesStorageReference } from '../services/Firebase';
 import { downloadFile } from '../helper/DownloadHelper';
 import { useParams } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 
 export default function DownloadFilesPage() {
     const { sessionId } = useParams()
     const [fileList, setFileList] = useState([]);
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchFiles = async () => {
+            setLoading(true)
             try {
                 const filesRef = doc(getFilesFirestoreReference(), sessionId)
                 const docSnap = await getDoc(filesRef);
-
                 const fileData = docSnap.data()
                 console.log(`fileData: ${fileData}`)
 
                 if (fileData == null || isFileExpired(fileData)) {
+                    setLoading(false)
                     setError('Link expired.')
                 } else {
                     const fileNames = fileData.fileNames
+                    setLoading(false)
                     setFileList(fileNames);
                 }
-
             } catch (error) {
+                setLoading(false)
                 console.log(error);
             }
         }
@@ -46,28 +49,49 @@ export default function DownloadFilesPage() {
 
     return (
         <div className="container-fluid backgroundColorDownloadPageList">
-            <h2 className="text-center mb-4">Files to download</h2>
-            <>
-                <ul className="list-group">
-                    {error ? (
-                        <div className='d-flex justify-content-center align-items-center'>
-                            {error}
-                        </div>
+            <div className='row'>
+                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
+                    <h4 className="downloadTitleText">Quick Drop</h4>
+                </div>
+            </div>
 
-                    ) : (
-                        fileList.map((fileName, index) => (
-                            <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                                <div className="d-flex align-items-center">
-                                    {fileName}
-                                </div>
-                                <Button className="btn btn-success" onClick={() => downloadFile(getFilesStorageReference(sessionId, fileName))}>
-                                    Download
-                                </Button>
-                            </li>
-                        ))
-                    )}
-                </ul>
-            </>
-        </div>
+            <div className='row d-flex justify-content-center'>
+                <div className='col-xl-10 col-lg-10 col-md-10 col-sm-12 align-items-center'>
+                    <div className="shadow-sm bg-white uploadedFilesContainer" style={{ width: '100%' }}>
+                        <h5 className="fs-bold pt-3 ps-3 text-start" style={{ letterSpacing: '1px' }}>Download files</h5>
+                        {loading ? (
+                            <div className="loading-indicator text-center pb-4">
+                                <Spinner animation="border" role="status">
+                                    <span className="visually-hidden"></span>
+                                </Spinner>
+                            </div>
+                        ) : (
+                            <>
+                                <ul className=" uploadedFilesList">
+                                    {
+                                        error ? (
+                                            <div className='d-flex justify-content-center align-items-center mb-3' >
+                                                {error}
+                                            </div>
+
+                                        ) : (
+                                            fileList.map((fileName, index) => (
+                                                <li key={index} className=" d-flex justify-content-between align-items-center downloadFileItem">
+                                                    <div className="d-flex align-items-center">
+                                                        {fileName}
+                                                    </div>
+                                                    <Button className="downloadFileButton" onClick={() => downloadFile(getFilesStorageReference(sessionId, fileName))}>
+                                                        Download
+                                                    </Button>
+                                                </li>
+                                            ))
+                                        )}
+                                </ul>
+                            </>
+                        )}
+                    </div>
+                </div >
+            </div >
+        </div >
     )
 }

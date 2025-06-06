@@ -86,11 +86,61 @@
 }
 
 .backgroundColorDownloadPageList {
-  background-color: #f0f1f1;
+  background-color: #f9fbfc;
   width: 100%;
   min-height: 100vh;
   position: relative;
 }
+
+.downloadTitleText {
+  display: flex;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: start;
+  margin-top: 14px;
+}
+
+.uploadedFilesContainer {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 25px !important;
+}
+
+.bottomLineDownloadFileTitle {
+  border-top: 2px solid #f2f1f2;
+  width: 100% !important;
+  border-radius: 25px;
+}
+
+.uploadedFilesList {
+  justify-content: center;
+  padding: 10px !important;
+  border-radius: 15px !important;
+}
+
+.downloadFileItem {
+  padding: 8px !important;
+  margin-top: 5px !important;
+  border: 2px solid #f3f3f3 !important;
+  border-radius: 10px !important;
+}
+
+.downloadFileButton {
+  border-radius: 7px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  background-color: #4993d4 !important;
+  border: none !important;
+}
+
+.downloadFileButton:hover {
+  background-color: #2573b7 !important;
+}
+
+
+
 
 
 @keyframes App-logo-spin {
