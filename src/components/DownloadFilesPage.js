@@ -48,13 +48,12 @@ export default function DownloadFilesPage() {
     }
 
     return (
-        <div className="container-fluid backgroundColorDownloadPageList">
-            <div className='row'>
+        <div className="container-fluid backgroundColorOfPages">
+            <div className='row backgroundHeaderTitle'>
                 <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
                     <h4 className="downloadTitleText">Quick Drop</h4>
                 </div>
             </div>
-
             <div className='row d-flex justify-content-center'>
                 <div className='col-xl-10 col-lg-10 col-md-10 col-sm-12 align-items-center'>
                     <div className="shadow-sm bg-white uploadedFilesContainer" style={{ width: '100%' }}>

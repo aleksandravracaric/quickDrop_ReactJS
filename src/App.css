@@ -35,6 +35,10 @@
   position: relative;
 }
 
+.backgroundHeaderTitle {
+  background-color: #e8e8e8;
+}
+
 .addFilesButton {
   width: 100% !important;
   height: 200px !important;
@@ -70,7 +74,7 @@
 }
 
 .downloadLink {
-  padding: 2rem;
+  padding: 30px;
   text-align: center;
 }
 
@@ -81,15 +85,33 @@
   padding: 10px;
   margin: 2rem auto;
   width: 160px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
 }
 
-.backgroundColorDownloadPageList {
+.fileShareContainerTitle {
+  font-size: 24px;
+}
+
+.fileShareContainer {
+  background-color: #e8e8e8;
+  border-radius: 25px;
+  text-align: center !important;
+}
+
+.downloadNavigationLink {
+  max-width: 150px !important;
+}
+
+.backgroundColorOfPages {
   background-color: #f9fbfc;
   width: 100%;
   min-height: 100vh;
   position: relative;
+}
+
+.downloadLinkInput:focus {
+  box-shadow: none !important;
 }
 
 .downloadTitleText {
@@ -97,7 +119,7 @@
   font-size: 28px;
   font-weight: 500;
   text-align: start;
-  margin-top: 14px;
+  padding: 5px;
 }
 
 .uploadedFilesContainer {
