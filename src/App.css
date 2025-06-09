@@ -39,8 +39,8 @@
   display: flex;
   align-items: center;
   height: 50px;
-  background-color: #e8e8e8;
-  padding-top: 4px;
+  background-color: #f4f3f3;
+  padding-top: 0px;
 }
 
 .addFilesButton {
@@ -125,6 +125,20 @@
   text-align: center !important;
   justify-content: start !important;
   align-items: center !important;
+}
+
+.buttonUploadAgain {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  background-color: #4993d4 !important;
+  border: none !important;
+  border-radius: 20px !important;
+}
+
+.buttonUploadAgain:hover {
+  background-color: #2573b7 !important;
 }
 
 .uploadedFilesContainer {

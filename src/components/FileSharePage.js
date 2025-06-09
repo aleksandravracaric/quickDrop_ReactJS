@@ -1,9 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import QRCode from 'react-qr-code';
+import { Button } from 'react-bootstrap';
 
 const FileSharePage = () => {
     const { sessionId } = useParams();
+    const navigate = useNavigate()
 
     const [downloadLink] = useState(`${window.location.origin}/download/${sessionId}`);
 
@@ -11,11 +13,16 @@ const FileSharePage = () => {
         navigator.clipboard.writeText(downloadLink)
     }
 
+    const handleUploadAgain = () => {
+        navigate('/')
+    }
+
     return (
         <div className='container-fluid backgroundColorOfPages'>
             <div className='row backgroundHeaderTitle'>
-                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 align-items-center'>
+                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-between align-items-center'>
                     <h4 className="downloadTitleText">Quick Drop</h4>
+                    <Button onClick={handleUploadAgain} className='buttonUploadAgain'>Upload again</Button>
                 </div>
             </div>
             <div className='row d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>

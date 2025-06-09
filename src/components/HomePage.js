@@ -99,10 +99,10 @@ export default function HomePage() {
     }
 
     return (
-        <div className='container-fluid backgroundColorHomePage'>
-            <div className='row'>
+        <div className='container-fluid backgroundColorOfPages'>
+            <div className='row backgroundHeaderTitle'>
                 <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
-                    <h3 className="pt-1 ps-1">Quick Drop</h3>
+                    <h3 className="downloadTitleText">Quick Drop</h3>
                 </div>
             </div>
 
