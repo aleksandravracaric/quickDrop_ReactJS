@@ -50,13 +50,13 @@ export default function DownloadFilesPage() {
     return (
         <div className="container-fluid backgroundColorOfPages">
             <div className='row backgroundHeaderTitle'>
-                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
+                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center'>
                     <h4 className="downloadTitleText">Quick Drop</h4>
                 </div>
             </div>
             <div className='row d-flex justify-content-center'>
                 <div className='col-xl-10 col-lg-10 col-md-10 col-sm-12 align-items-center'>
-                    <div className="shadow-sm bg-white uploadedFilesContainer" style={{ width: '100%' }}>
+                    <div className="bg-white uploadedFilesContainer" style={{ width: '100%' }}>
                         <h5 className="fs-bold pt-3 ps-3 text-start" style={{ letterSpacing: '1px' }}>Download files</h5>
                         {loading ? (
                             <div className="loading-indicator text-center pb-4">

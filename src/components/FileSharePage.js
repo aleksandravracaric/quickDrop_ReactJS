@@ -13,14 +13,14 @@ const FileSharePage = () => {
 
     return (
         <div className='container-fluid backgroundColorOfPages'>
-            <div className='row backgroundHeaderTitle d-flex justify-content-start'>
+            <div className='row backgroundHeaderTitle'>
                 <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 align-items-center'>
                     <h4 className="downloadTitleText">Quick Drop</h4>
                 </div>
             </div>
             <div className='row d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>
                 <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center'>
-                    <div className="shadow-sm fileShareContainer" style={{ width: '100%' }}>
+                    <div className="fileShareContainer" style={{ width: '100%' }}>
                         <div className='downloadLink' >
                             <p className='fileShareContainerTitle'>Scan QR Code</p>
                             <div className='qrCode' >

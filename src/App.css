@@ -36,7 +36,11 @@
 }
 
 .backgroundHeaderTitle {
+  display: flex;
+  align-items: center;
+  height: 50px;
   background-color: #e8e8e8;
+  padding-top: 4px;
 }
 
 .addFilesButton {
@@ -118,8 +122,9 @@
   display: flex;
   font-size: 28px;
   font-weight: 500;
-  text-align: start;
-  padding: 5px;
+  text-align: center !important;
+  justify-content: start !important;
+  align-items: center !important;
 }
 
 .uploadedFilesContainer {
@@ -160,9 +165,6 @@
 .downloadFileButton:hover {
   background-color: #2573b7 !important;
 }
-
-
-
 
 
 @keyframes App-logo-spin {
