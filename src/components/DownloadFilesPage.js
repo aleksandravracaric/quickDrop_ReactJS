@@ -61,7 +61,7 @@ export default function DownloadFilesPage() {
             <div className='row backgroundHeaderTitle'>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center">
                     <img src={LogoIcon} alt="Logo" style={{ width: '30px', height: 'auto', }} />
-                    <h3 className="downloadTitleText mb-1 ms-2">Quick Drop</h3>
+                    <h3 className="downloadTitleText mt-1 ms-2">Quick Drop</h3>
                 </div>
             </div>
             <div className='row d-flex justify-content-center'>

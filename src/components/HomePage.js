@@ -112,14 +112,12 @@ export default function HomePage() {
         navigate(`/${sessionId}`)
     };
 
-
-
     return (
         <div className='container-fluid backgroundColorOfPages'>
             <div className='row backgroundHeaderTitle'>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center">
                     <img src={LogoIcon} alt="Logo" style={{ width: '30px', height: 'auto', }} />
-                    <h3 className="downloadTitleText mb-1 ms-2">Quick Drop</h3>
+                    <h3 className="downloadTitleText mt-1 ms-2">Quick Drop</h3>
                 </div>
             </div>
 
@@ -133,13 +131,11 @@ export default function HomePage() {
                             style={{ border: '2px dashed #ccc', padding: '20px', borderRadius: '40px' }}
                         >
                             <p className="">Drag and drop files here<br />OR</p>
-
                             <Button
                                 className="addFilesButton" onClick={handleAddFilesClick} disabled={loading}>
                                 <p className='plusText'><i className="bi bi-file-earmark-plus"></i></p>
                                 {loading ? 'Uploading...' : uploadingStateMessage}
                             </Button>
-
                             <input
                                 type="file"
                                 ref={fileInputRef}
