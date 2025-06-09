@@ -2,7 +2,7 @@ import { doc, getDoc, Timestamp } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import { getFilesFirestoreReference, getFilesStorageReference } from '../services/Firebase';
 import { downloadFile } from '../helper/DownloadHelper';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
 
 export default function DownloadFilesPage() {
@@ -10,8 +10,6 @@ export default function DownloadFilesPage() {
     const [fileList, setFileList] = useState([]);
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
-
 
     useEffect(() => {
         const fetchFiles = async () => {
@@ -49,16 +47,11 @@ export default function DownloadFilesPage() {
         return now.toMillis() >= expirationHours.toMillis()
     }
 
-    const handleUploadAgain = () => {
-        navigate('/')
-    }
-
     return (
         <div className="container-fluid backgroundColorOfPages">
             <div className='row backgroundHeaderTitle'>
-                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-between align-items-center'>
+                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center'>
                     <h4 className="downloadTitleText">Quick Drop</h4>
-                    <Button onClick={handleUploadAgain} className='buttonUploadAgain'>Upload again</Button>
                 </div>
             </div>
             <div className='row d-flex justify-content-center'>
