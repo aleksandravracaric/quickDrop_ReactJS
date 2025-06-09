@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import QRCode from 'react-qr-code';
 import { Button } from 'react-bootstrap';
+import LogoIcon from '../quickDropLogoIcon.png'
 
 const FileSharePage = () => {
     const { sessionId } = useParams();
@@ -21,7 +22,12 @@ const FileSharePage = () => {
         <div className='container-fluid backgroundColorOfPages'>
             <div className='row backgroundHeaderTitle'>
                 <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-between align-items-center'>
-                    <h4 className="downloadTitleText">Quick Drop</h4>
+                    <div className=' d-flex align-items-center'>
+                        <img src={LogoIcon} alt="Logo" style={{ width: '30px', height: 'auto', }} />
+
+                        <h4 className="downloadTitleText mt-1 ms-2">Quick Drop</h4>
+                    </div>
+
                     <Button onClick={handleUploadAgain} className='buttonUploadAgain'>Upload again</Button>
                 </div>
             </div>

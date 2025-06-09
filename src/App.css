@@ -47,7 +47,7 @@
   width: 100% !important;
   height: 200px !important;
   background-color: #ffffff !important;
-  color: #2855b9 !important;
+  color: #373737 !important;
   transition: 0.3s !important;
   border: none !important;
   border-radius: 20px !important;
@@ -59,13 +59,27 @@
 
 .addFilesButton:hover {
   background-color: #ebebeb !important;
-  color: #1f469a !important;
+  color: #1e1e1e !important;
 }
 
 .plusText {
   font-size: 60px;
   font-weight: 800;
 }
+
+.dropdownHours {
+  background-color: #7d7d7d !important;
+  border: none !important;
+}
+
+.dropdownHours:hover {
+  background-color: #606060 !important;
+}
+
+.dropdownHours:active {
+  background-color: #7d7d7d !important;
+}
+
 
 .backgroundColorDownloadPage {
   background-color: #f0f1f1;
@@ -174,6 +188,8 @@
   text-align: center !important;
   background-color: #4993d4 !important;
   border: none !important;
+  width: 100px !important;
+  height: 40px;
 }
 
 .downloadFileButton:hover {
