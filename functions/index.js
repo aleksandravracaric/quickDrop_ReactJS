@@ -1,9 +1,7 @@
-const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const { onRequest } = require('firebase-functions/https');
 admin.initializeApp()
 const cors = require("cors")
-
 
 const db = admin.firestore()
 const storage = admin.storage()
@@ -23,7 +21,6 @@ const corsHandler = cors({
         return callback(new Error("Not allowed by CORS"));
     },
 });
-
 
 exports.deleteExpiredFiles = onRequest({ region: ["europe-west1"] }, (req, res) => {
     corsHandler(req, res, async () => {
