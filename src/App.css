@@ -49,6 +49,7 @@
   align-items: center !important;
   background-color: #f4f3f3;
   height: 5vh;
+  min-width: 100% !important;
   font-size: 12px;
   font-weight: 600;
 }

@@ -71,11 +71,13 @@ const FileSharePage = () => {
                     </div>
                 </div>
             </div>
-            <footer className="footer">
-                <div className="text-center">
-                    Made by Aleksandra
+            <div className="row footer">
+                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
+                    <div className="text-center">
+                        Made by Aleksandra
+                    </div>
                 </div>
-            </footer>
+            </div>
         </div>
     );
 };
