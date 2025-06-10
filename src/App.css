@@ -146,13 +146,13 @@
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  background-color: #4993d4 !important;
+  background-color: #247ac4 !important;
   border: none !important;
   border-radius: 20px !important;
 }
 
 .buttonUploadAgain:hover {
-  background-color: #2573b7 !important;
+  background-color: #216daf !important;
 }
 
 .uploadedFilesContainer {
