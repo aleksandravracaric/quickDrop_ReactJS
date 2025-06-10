@@ -121,7 +121,7 @@ export default function HomePage() {
                 </div>
             </div>
 
-            <div className='row d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>
+            <div className='row d-flex justify-content-center align-items-center' style={{ height: '88vh' }}>
                 <div className='col-xl-4 col-lg-4 col-md-6 col-sm-11 align-items-center text-center '>
                     <div className='text-center'>
                         <div
@@ -164,6 +164,12 @@ export default function HomePage() {
                     </div>
                 </div>
             </div>
+
+            <footer className="footer">
+                <div className="text-center">
+                    Made by Aleksandra
+                </div>
+            </footer>
         </div>
     );
 }

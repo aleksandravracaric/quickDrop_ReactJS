@@ -38,9 +38,19 @@
 .backgroundHeaderTitle {
   display: flex;
   align-items: center;
-  height: 50px;
+  height: 7vh;
   background-color: #f4f3f3;
   padding-top: 0px;
+}
+
+.footer {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: #f4f3f3;
+  height: 5vh;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .addFilesButton {

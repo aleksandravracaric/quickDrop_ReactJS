@@ -29,7 +29,7 @@ const FileSharePage = () => {
                     <Button onClick={handleUploadAgain} className='buttonUploadAgain'>Upload again</Button>
                 </div>
             </div>
-            <div className='row d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>
+            <div className='row d-flex justify-content-center align-items-center' style={{ minHeight: '88vh' }}>
                 <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center'>
                     <div className="fileShareContainer" style={{ width: '100%' }}>
                         <div className='downloadLink' >
@@ -71,6 +71,11 @@ const FileSharePage = () => {
                     </div>
                 </div>
             </div>
+            <footer className="footer">
+                <div className="text-center">
+                    Made by Aleksandra
+                </div>
+            </footer>
         </div>
     );
 };

@@ -65,7 +65,7 @@ export default function DownloadFilesPage() {
                 </div>
             </div>
             <div className='row d-flex justify-content-center'>
-                <div className='col-xl-10 col-lg-10 col-md-10 col-sm-12 align-items-center'>
+                <div className='col-xl-10 col-lg-10 col-md-10 col-sm-12 align-items-center' style={{ minHeight: '88vh' }}>
                     <div className="bg-white uploadedFilesContainer" style={{ width: '100%' }}>
                         <h5 className="fs-bold pt-3 ps-3 text-start" style={{ letterSpacing: '1px' }}>Download files</h5>
                         {loading ? (
@@ -115,6 +115,11 @@ export default function DownloadFilesPage() {
                     </div>
                 </div >
             </div >
+            <footer className="footer">
+                <div className="text-center">
+                    Made by Aleksandra
+                </div>
+            </footer>
         </div >
     )
 }
