@@ -61,7 +61,7 @@ export default function HomePage() {
         }
 
         if (isFileLarge) {
-            alert('Error uploading file')
+            alert('File larger than 5MB')
             return
         }
 
