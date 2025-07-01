@@ -6,6 +6,7 @@ import { doc, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore';
 import { FILE_SIZE_LIMIT_MB, FILES_LIMIT } from '../FileConfig';
 import { useNavigate } from 'react-router-dom';
 import LogoIcon from '../quickDropLogoIcon.png'
+import SignedFooter from './SignedFooter';
 
 export default function HomePage() {
     const [loading, setLoading] = useState(false);
@@ -113,65 +114,60 @@ export default function HomePage() {
     };
 
     return (
-        <div className='container-fluid backgroundColorOfPages'>
-            <div className='row backgroundHeaderTitle'>
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center">
-                    <img src={LogoIcon} alt="Logo" style={{ width: '30px', height: 'auto', }} />
-                    <h3 className="downloadTitleText mt-2 ms-2">Quick Drop</h3>
+        <>
+            <div className='container-fluid backgroundColorOfPages'>
+                <div className='row backgroundHeaderTitle'>
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center">
+                        <img src={LogoIcon} alt="Logo" style={{ width: '30px', height: 'auto', }} />
+                        <h3 className="downloadTitleText mt-2 ms-2">Quick Drop</h3>
+                    </div>
                 </div>
-            </div>
 
-            <div className='row d-flex justify-content-center align-items-center' style={{ height: '88vh' }}>
-                <div className='col-xl-4 col-lg-4 col-md-6 col-sm-11 align-items-center text-center '>
-                    <div className='text-center'>
-                        <div
-                            className='text-center'
-                            onDrop={handleDrop}
-                            onDragOver={handleDragOver}
-                            style={{ border: '2px dashed #ccc', padding: '20px', borderRadius: '40px' }}
-                        >
-                            <p className="">Drag and drop files here<br />OR</p>
-                            <Button
-                                className="addFilesButton" onClick={handleAddFilesClick} disabled={loading}>
-                                <p className='plusText'><i className="bi bi-file-earmark-plus"></i></p>
-                                {loading ? 'Uploading...' : uploadingStateMessage}
-                            </Button>
-                            <input
-                                type="file"
-                                ref={fileInputRef}
-                                multiple
-                                style={{ display: 'none' }}
-                                onChange={handleFileChange}
-                            />
+                <div className='row d-flex justify-content-center align-items-center' style={{ height: '88vh' }}>
+                    <div className='col-xl-4 col-lg-4 col-md-6 col-sm-11 align-items-center text-center '>
+                        <div className='text-center'>
+                            <div
+                                className='text-center'
+                                onDrop={handleDrop}
+                                onDragOver={handleDragOver}
+                                style={{ border: '2px dashed #ccc', padding: '20px', borderRadius: '40px' }}
+                            >
+                                <p className="">Drag and drop files here<br />OR</p>
+                                <Button
+                                    className="addFilesButton" onClick={handleAddFilesClick} disabled={loading}>
+                                    <p className='plusText'><i className="bi bi-file-earmark-plus"></i></p>
+                                    {loading ? 'Uploading...' : uploadingStateMessage}
+                                </Button>
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    multiple
+                                    style={{ display: 'none' }}
+                                    onChange={handleFileChange}
+                                />
+                            </div>
+
+                            <Dropdown className='mt-3' onSelect={(e) => handleSelectHours(e)}>
+                                <DropdownToggle className='dropdownHours' variant="primary" id="dropdownHoursButton">
+                                    Duration: {duration}h
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem eventKey='1'>
+                                        1h
+                                    </DropdownItem>
+                                    <DropdownItem eventKey='6'>
+                                        6h
+                                    </DropdownItem>
+                                    <DropdownItem eventKey='24'>
+                                        24h
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
                         </div>
-
-                        <Dropdown className='mt-3' onSelect={(e) => handleSelectHours(e)}>
-                            <DropdownToggle className='dropdownHours' variant="primary" id="dropdownHoursButton">
-                                Duration: {duration}h
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem eventKey='1'>
-                                    1h
-                                </DropdownItem>
-                                <DropdownItem eventKey='6'>
-                                    6h
-                                </DropdownItem>
-                                <DropdownItem eventKey='24'>
-                                    24h
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
                     </div>
                 </div>
             </div>
-
-            <div className="row footer">
-                <div className='col-xl-12 col-lg-12 col-md-12 col-sm-12'>
-                    <div className="text-center">
-                        Made by Aleksandra
-                    </div>
-                </div>
-            </div>
-        </div>
+            <SignedFooter />
+        </>
     );
 }

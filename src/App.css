@@ -43,16 +43,19 @@
   padding-top: 0px;
 }
 
-.footer {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+.customFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 6px 0;
+  z-index: 9999;
   background-color: #f4f3f3;
-  height: 5vh;
-  min-width: 100% !important;
-  font-size: 12px;
-  font-weight: 600;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
+
 
 .addFilesButton {
   width: 100% !important;
