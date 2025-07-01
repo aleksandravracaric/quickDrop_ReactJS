@@ -50,8 +50,8 @@ export default function DownloadFilesPage() {
         return now.toMillis() >= expirationHours.toMillis()
     }
 
-    function showLoadingAnimation() {
-        setLoadingDownload(true)
+    function showLoadingAnimation(fileName) {
+        setLoadingDownload(fileName)
         setTimeout(() => {
             setLoadingDownload(false)
         }, 1500)
@@ -92,7 +92,7 @@ export default function DownloadFilesPage() {
                                                             {fileName}
                                                         </div>
 
-                                                        {loadingDownload ? (
+                                                        {loadingDownload === fileName ? (
                                                             <Button className="downloadFileButton text-light">
                                                                 <Spinner className='' animation="border" role="status">
                                                                     <span className="visually-hidden"></span>
@@ -100,8 +100,8 @@ export default function DownloadFilesPage() {
                                                             </Button>
                                                         )
                                                             : (<Button className="downloadFileButton" onClick={
-                                                                () => {
-                                                                    showLoadingAnimation()
+                                                                async () => {
+                                                                    showLoadingAnimation(fileName)
                                                                     downloadFile(getFilesStorageReference(sessionId, fileName))
 
                                                                 }}>
